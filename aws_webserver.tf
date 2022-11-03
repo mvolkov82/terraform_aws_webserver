@@ -9,13 +9,15 @@ resource "aws_instance" "my_webserver" {
   user_data = <<EOF
 #!/bin/bash
 sudo apt -y update
-sudo apt install openjdk-8-jre-headless
-sudo apt -y install maven
-git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git
-cd boxfuse-sample-java-war-hello
-mvn package
+sudo apt -y install docker.io
 EOF
 }
+
+//sudo apt install openjdk-8-jre-headless
+//sudo apt -y install maven
+//git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git
+//cd boxfuse-sample-java-war-hello
+//mvn package
 
 resource "aws_security_group" "my_webserver" {
   name        = "WebServer Security Group"
