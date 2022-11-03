@@ -2,10 +2,10 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-resource "aws_instance" "my_webserver" {
+resource "aws_instance" "my_webserver2" {
   ami = "ami-0caef02b518350c8b"
   instance_type = "t2.medium"
-  SecurityGroupIds = ["aws_security_group.my_webserver.id"]
+  vpc_security_group_ids = ["aws_security_group.my_webserver.id"]
   user_data = <<EOF
 #!/bin/bash
 sudo apt -y update
