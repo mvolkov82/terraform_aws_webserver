@@ -10,6 +10,7 @@ resource "aws_instance" "my_webserver2" {
 #!/bin/bash
 sudo apt -y update
 sudo apt -y install docker.io
+sudo apt -y install mc
 mkdir -p /opt/java_project
 cd /opt/java_project
 git clone https://github.com/mvolkov82/sbermegamarket.git
