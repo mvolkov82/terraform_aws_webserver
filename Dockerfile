@@ -1,7 +1,7 @@
 FROM maven:3.5.2-jdk-8
 #RUN mkdir -p /opt/java_project
 #RUN cd /opt/java_project
-RUN md -p artifact
+RUN mkdir -p artifact
 RUN rm -r /sbermegamarket/*; \
     git clone https://github.com/mvolkov82/sbermegamarket.git; \
     cd /sbermegamarket; \
