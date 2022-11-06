@@ -12,11 +12,15 @@ RUN mkdir -p artifact
 #RUN pwd
 #RUN   mvn package
 
+#hello-1.0.war
+
 RUN git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git; \
     ls -la; \
     cd boxfuse-sample-java-war-hello; \
     ls -la; \
-    mvn package
+    mvn package; \
+    cd target; \
+    copy hello-1.0.war \artifact
 
 
 
