@@ -15,7 +15,7 @@ mkdir -p /opt/java_project
 cd /opt/java_project
 git clone https://github.com/mvolkov82/sbermegamarket.git
 cd /opt/java_project/sbermegamarket
-mvn clean package
+docker run -d -v :/opt/java_project -w /opt/maven maven:3.5.2-jdk-8 mvn clean package
 EOF
 }
 
