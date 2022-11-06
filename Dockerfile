@@ -18,7 +18,7 @@ RUN git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git; \
     ls -la; \
     cd boxfuse-sample-java-war-hello; \
     ls -la; \
-    mvn package -o; \
+    mvn package; \
     cd target; \
     cp hello-1.0.war \artifact
 
