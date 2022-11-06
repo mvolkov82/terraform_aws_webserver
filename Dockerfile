@@ -6,7 +6,7 @@ RUN mkdir -p artifact
 #    git clone https://github.com/mvolkov82/sbermegamarket.git; \
 RUN git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git
 RUN ls -la
-WORKDIR . /boxfuse-sample-java-war-hello
+#WORKDIR . /boxfuse-sample-java-war-hello
 RUN ls -la
 RUN pwd
 RUN   mvn package
