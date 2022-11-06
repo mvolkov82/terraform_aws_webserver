@@ -5,8 +5,8 @@ RUN mkdir -p artifact
 #RUN rm -r /sbermegamarket/*; \
 #    git clone https://github.com/mvolkov82/sbermegamarket.git; \
 RUN git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git
-RUN cd boxfuse-sample-java-war-hello
 RUN ls -la
+RUN cd boxfuse-sample-java-war-hello
 #WORKDIR . /boxfuse-sample-java-war-hello
 RUN ls -la
 RUN pwd
