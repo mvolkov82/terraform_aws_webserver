@@ -27,5 +27,5 @@ RUN mkdir -p artifact
 #COPY /boxfuse-sample-java-war-hello/target/demo-0.0.1-SNAPSHOT.jar /artifact
 #VOLUME /artifact
 #CMD ["bash"]
-COPY startup.sh .
-CMD ["/bin/bash","-c","./startup.sh"]
+COPY startup.sh /artifact/startup.sh
+CMD ["/bin/bash","-c","/artifact/startup.sh"]
