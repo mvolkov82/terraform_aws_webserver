@@ -28,4 +28,6 @@ RUN mkdir -p artifact
 #VOLUME /artifact
 #CMD ["bash"]
 COPY startup.sh /artifact/startup.sh
+RUN chmod +x /artifact/startup.sh
+
 CMD ["/bin/bash","-c","/artifact/startup.sh"]
