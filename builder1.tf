@@ -16,6 +16,8 @@ cd /opt/java_project
 git clone https://github.com/mvolkov82/terraform_aws_webserver
 cd terraform_aws_webserver
 docker build -t maven_builder .
+docker volume create --name a2
+docker run -v /var/run/docker.sock:/var/run/docker.sock -v a2:/artifact maven_builder
 EOF
 }
 
