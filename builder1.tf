@@ -5,7 +5,7 @@ provider "aws" {
 resource "aws_instance" "builder" {
   ami = "ami-0caef02b518350c8b"
   instance_type = "t2.small"
-  vpc_security_group_ids = [aws_security_group.my_builder.id]
+  vpc_security_group_ids = [aws_security_group.my_builder1.id]
   user_data = <<EOF
 #!/bin/bash
 sudo apt -y update
@@ -22,7 +22,7 @@ EOF
 }
 
 
-resource "aws_security_group" "my_builder" {
+resource "aws_security_group" "my_builder1" {
   name        = "WebServer Security Group"
   description = "Allow TLS inbound traffic"
 
