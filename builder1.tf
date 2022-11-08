@@ -4,7 +4,7 @@ provider "aws" {
 
 resource "aws_instance" "builder" {
   ami = "ami-0caef02b518350c8b"
-  instance_type = "t2.small"
+  instance_type = "t3.medium"
   vpc_security_group_ids = [aws_security_group.my_builder1.id]
   user_data = <<EOF
 #!/bin/bash
