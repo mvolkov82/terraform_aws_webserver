@@ -23,7 +23,7 @@ EOF
 
 
 resource "aws_security_group" "my_builder1" {
-  name        = "WebServer Security Group"
+  name        = "Builder Security Group"
   description = "Allow TLS inbound traffic"
 
   ingress {
