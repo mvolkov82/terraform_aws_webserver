@@ -6,6 +6,10 @@ resource "aws_instance" "builder" {
   ami = "ami-0caef02b518350c8b"
   instance_type = "t3.medium"
   vpc_security_group_ids = [aws_security_group.my_builder1.id]
+  provisioner "file" {
+    source      = "env.list"
+    destination = "/root/.aws/env.list"
+  }
   user_data = <<EOF
 #!/bin/bash
 sudo apt -y update
@@ -18,8 +22,8 @@ cd terraform_aws_webserver
 docker build -t maven_builder .
 docker volume create --name a2
 docker run -v /var/run/docker.sock:/var/run/docker.sock -v a2:/artifact maven_builder
-docker run --rm -it --env-file env.list amazon/aws-cli s3 mb s3://malvolkov01
-docker run --rm -it -v a2:/root/.aws --env-file env.list amazon/aws-cli s3 cp /root/.aws/hello-1.0.war s3://malvolkov01
+docker run --env-file env.list amazon/aws-cli s3 mb s3://malvolkov02
+docker run --env-file env.list -v /var/run/docker.sock:/var/run/docker.sock -v a2:/root/.aws amazon/aws-cli s3 cp /root/.a>
 EOF
 }
 
