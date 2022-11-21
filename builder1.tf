@@ -22,8 +22,8 @@ cd terraform_aws_webserver
 docker build -t maven_builder .
 docker volume create --name a2
 docker run -v /var/run/docker.sock:/var/run/docker.sock -v a2:/artifact maven_builder
-docker run --env-file env.list amazon/aws-cli s3 mb s3://malvolkov02
-docker run --env-file env.list -v /var/run/docker.sock:/var/run/docker.sock -v a2:/root/.aws amazon/aws-cli s3 cp /root/.a>
+docker run --env-file env.list amazon/aws-cli s3 mb s3://malvolkov03
+docker run --env-file env.list -v /var/run/docker.sock:/var/run/docker.sock -v a2:/root/.aws amazon/aws-cli s3 cp /root/.aws/env.list s3://malvolkov03>
 EOF
 }
 
