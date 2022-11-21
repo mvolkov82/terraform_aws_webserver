@@ -15,7 +15,7 @@ resource "aws_instance" "builder" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = "${file("/home/ubuntu/terraform/3/terraform_aws_webserver/keypair-1.pem")}"
+      private_key = "${file("/home/ubuntu/terraform/3/terraform_aws_webserver/keypair-1")}"
       host        = "${self.public_ip}"
     }
   }
