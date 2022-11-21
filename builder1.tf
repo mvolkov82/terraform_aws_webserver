@@ -27,25 +27,25 @@ docker run --env-file env.list -v /var/run/docker.sock:/var/run/docker.sock -v a
 EOF
 }
 
-resource "aws_instance" "aws_sender" {
-  ami = "ami-0caef02b518350c8b"
-  instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.my_builder1.id]
-  user_data = <<EOF
-#!/bin/bash
-sudo apt -y update
-sudo apt -y install docker.io
-sudo apt -y install mc
-mkdir -p /opt/java_artifact
-cd /opt/java_artifact
-
-docker run --rm -ti -v a2:/artifact -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli s3 cp s3://aws-cli-docker-demo/hello .
-
-docker build -t maven_builder .
-docker volume create --name a2
-docker run -v /var/run/docker.sock:/var/run/docker.sock -v a2:/artifact maven_builder
-EOF
-}
+//resource "aws_instance" "aws_sender" {
+//  ami = "ami-0caef02b518350c8b"
+//  instance_type = "t2.micro"
+//  vpc_security_group_ids = [aws_security_group.my_builder1.id]
+//  user_data = <<EOF
+//#!/bin/bash
+//sudo apt -y update
+//sudo apt -y install docker.io
+//sudo apt -y install mc
+//mkdir -p /opt/java_artifact
+//cd /opt/java_artifact
+//
+//docker run --rm -ti -v a2:/artifact -v ~/.aws:/root/.aws -v $(pwd):/aws amazon/aws-cli s3 cp s3://aws-cli-docker-demo/hello .
+//
+//docker build -t maven_builder .
+//docker volume create --name a2
+//docker run -v /var/run/docker.sock:/var/run/docker.sock -v a2:/artifact maven_builder
+//EOF
+//}
 
 
 resource "aws_security_group" "my_builder1" {
