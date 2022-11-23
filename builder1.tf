@@ -6,19 +6,7 @@ resource "aws_instance" "builder" {
   ami = "ami-0caef02b518350c8b"
   instance_type = "t3.medium"
   vpc_security_group_ids = [aws_security_group.my_builder1.id]
-  key_name = "keypair-1"
   associate_public_ip_address = true
-
-  provisioner "file" {
-    source      = "env.list"
-    destination = "/root/.aws/env.list"
-    connection {
-      type        = "ssh"
-      user        = "ubuntu"
-      private_key = "${file("/home/ubuntu/terraform/3/terraform_aws_webserver/keypair-1")}"
-      host        = "${self.public_ip}"
-    }
-  }
   user_data = <<EOF
 #!/bin/bash
 sudo apt -y update
