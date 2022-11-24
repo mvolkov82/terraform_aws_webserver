@@ -19,10 +19,8 @@ cd terraform_aws_webserver
 docker build -t maven_builder .
 docker volume create --name a2
 docker run -v /var/run/docker.sock:/var/run/docker.sock -v a2:/artifact maven_builder
-echo *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
 docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 mb s3://malvolkov01
-docker run --rm -e AWS_ACCESS_KEY_ID="${var.key_id}" -e AWS_SECRET_ACCESS_KEY="${var.key}" -v /var/run/docker.sock:/var/run/docker.sock -v a2:/root/.aws amazon/aws-cli s3 cp /root/.aws/env.list s3://malvolkov01>
-echo *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+docker run --rm -e AWS_ACCESS_KEY_ID="${var.key_id}" -e AWS_SECRET_ACCESS_KEY="${var.key}" -v /var/run/docker.sock:/var/run/docker.sock -v a2:/root/.aws amazon/aws-cli s3 cp /root/.aws/env.list s3://malvolkov01
 EOF
 }
 
