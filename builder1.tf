@@ -19,8 +19,10 @@ cd terraform_aws_webserver
 docker build -t maven_builder .
 docker volume create --name a2
 docker run -v /var/run/docker.sock:/var/run/docker.sock -v a2:/artifact maven_builder
-docker run --rm -it -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 mb s3://malvolkov01
+echo "***************************************************************************"
+docker run --rm -it -e AWS_ACCESS_KEY_ID="${var.key_id}" -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 mb s3://malvolkov01
 docker run --rm -it -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} -v /var/run/docker.sock:/var/run/docker.sock -v a2:/root/.aws amazon/aws-cli s3 cp /root/.aws/env.list s3://malvolkov01>
+echo "***************************************************************************"
 EOF
 }
 
@@ -46,35 +48,39 @@ EOF
 
 
 resource "aws_security_group" "my_builder1" {
-  name        = "Builder Security Group"
+  name = "Builder Security Group"
   description = "Allow TLS inbound traffic"
 
   ingress {
-    from_port        = 80
-    to_port          = 80
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port = 80
+    to_port = 80
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
   }
 
   ingress {
-    from_port        = 22
-    to_port          = 22
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port = 22
+    to_port = 22
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
   }
 
   ingress {
-    from_port        = 443
-    to_port          = 443
-    protocol         = "tcp"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port = 443
+    to_port = 443
+    protocol = "tcp"
+    cidr_blocks = [
+      "0.0.0.0/0"]
   }
 
   egress {
-    from_port        = 0
-    to_port          = 0
-    protocol         = "-1"
-    cidr_blocks      = ["0.0.0.0/0"]
+    from_port = 0
+    to_port = 0
+    protocol = "-1"
+    cidr_blocks = [
+      "0.0.0.0/0"]
   }
 
   tags = {
