@@ -18,14 +18,8 @@ git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git
 cd boxfuse-sample-java-war-hello
 docker run --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
 cd target
-//docker build -t maven_builder .
-//docker volume create --name a2
-//docker run -v /var/run/docker.sock:/var/run/docker.sock -v a2:/artifact maven_builder
-
-docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 mb s3://malvolkov03
-docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 cp hello-1.0.war s3://malvolkov03
-//-v /var/run/docker.sock:/var/run/docker.sock
-//-v a2:/root/.aws amazon/aws-cli s3 cp /artifact/hello-1.0.war s3://malvolkov02
+docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 mb s3://malvolkov04
+docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 cp hello-1.0.war s3://malvolkov04
 EOF
 }
 
