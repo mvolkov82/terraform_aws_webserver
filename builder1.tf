@@ -23,7 +23,8 @@ echo "---------------------------------"
 ls -la
 echo "$(pwd)"
 echo "---------------------------------"
-docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 cp /opt/java_project/boxfuse-sample-java-war-hello/target/hello-1.0.war s3://malvolkov05
+workdir /opt/java_project/boxfuse-sample-java-war-hello/target
+docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 cp hello-1.0.war s3://malvolkov05
 EOF
 }
 
