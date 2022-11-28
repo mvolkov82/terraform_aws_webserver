@@ -19,6 +19,10 @@ cd boxfuse-sample-java-war-hello
 docker run --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
 cd target
 docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 mb s3://malvolkov05
+echo "---------------------------------"
+ls -la
+echo "$(pwd)"
+echo "---------------------------------"
 docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 cp /opt/java_project/boxfuse-sample-java-war-hello/target/hello-1.0.war s3://malvolkov05
 EOF
 }
