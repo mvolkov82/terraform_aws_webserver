@@ -2,25 +2,25 @@ provider "aws" {
   region = "eu-central-1"
 }
 
-resource "aws_instance" "builder" {
-  ami = "ami-0caef02b518350c8b"
-  instance_type = "t3.medium"
-  vpc_security_group_ids = [aws_security_group.my_builder1.id]
-  associate_public_ip_address = true
-  user_data = <<EOF
-#!/bin/bash
-sudo apt -y update
-sudo apt -y install docker.io
-sudo apt -y install mc
-mkdir -p /opt/java_project
-cd /opt/java_project
-git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git
-cd boxfuse-sample-java-war-hello
-docker run --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
-docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 mb s3://malvolkov02
-docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} -v $(pwd):/aws amazon/aws-cli s3 cp hello-1.0.war s3://malvolkov02
-EOF
-}
+//resource "aws_instance" "builder" {
+//  ami = "ami-0caef02b518350c8b"
+//  instance_type = "t3.medium"
+//  vpc_security_group_ids = [aws_security_group.my_builder1.id]
+//  associate_public_ip_address = true
+//  user_data = <<EOF
+//#!/bin/bash
+//sudo apt -y update
+//sudo apt -y install docker.io
+//sudo apt -y install mc
+//mkdir -p /opt/java_project
+//cd /opt/java_project
+//git clone https://github.com/mvolkov82/boxfuse-sample-java-war-hello.git
+//cd boxfuse-sample-java-war-hello
+//docker run --rm --name my-maven-project -v "$(pwd)":/usr/src/mymaven -w /usr/src/mymaven maven:3.3-jdk-8 mvn clean install
+//docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} amazon/aws-cli s3 mb s3://malvolkov02
+//docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} -v $(pwd):/aws amazon/aws-cli s3 cp hello-1.0.war s3://malvolkov02
+//EOF
+//}
 
 resource "aws_instance" "prod" {
   ami = "ami-0caef02b518350c8b"
