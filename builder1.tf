@@ -33,7 +33,7 @@ sudo apt -y update
 sudo apt -y install docker.io
 sudo apt -y install mc
 mkdir -p /opt/java_project
-docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} -v  /opt/java_project:/aws amazon/aws-cli s3 cp s3://malvolkov02/hello-1.0.war .
+docker run --rm -e AWS_ACCESS_KEY_ID=${var.key_id} -e AWS_SECRET_ACCESS_KEY=${var.key} -v /opt/java_project:/aws amazon/aws-cli s3 cp s3://malvolkov02/hello-1.0.war .
 EOF
 }
 
