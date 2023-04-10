@@ -19,6 +19,7 @@ EOF
 resource "aws_security_group" "my_builder1" {
   name = "Builder Security Group"
   description = "Allow TLS inbound traffic"
+  key_name = "JenkinsAgents"
 
   ingress {
     from_port = 80
