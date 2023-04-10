@@ -7,6 +7,7 @@ resource "aws_instance" "Prod-1" {
   instance_type = "t2.micro"
   vpc_security_group_ids = [aws_security_group.my_builder1.id]
   associate_public_ip_address = true
+  key_name = "JenkinsAgents"
   user_data = <<EOF
 #!/bin/bash
 sudo apt -y update
@@ -19,7 +20,6 @@ EOF
 resource "aws_security_group" "my_builder1" {
   name = "Builder Security Group"
   description = "Allow TLS inbound traffic"
-  key_name = "JenkinsAgents"
 
   ingress {
     from_port = 80
